@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mii Horror Portal</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      color: #000;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3em;
+      color: #333;
+      margin-top: 50px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+    #mii-avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: #ffcc00;
+      margin-top: 30px;
+      transition: all 2s ease-in-out;
+    }
+    #message {
+      font-size: 20px;
+      color: #333;
+      margin-top: 20px;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+    }
+    #deform {
+      display: none;
+      margin-top: 50px;
+      font-size: 25px;
+      color: red;
+      text-transform: uppercase;
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 3px 0px 0 rgba(0,255,0,0.6); }
+      50% { text-shadow: -3px 0px 0 rgba(255,0,0,0.6); }
+      100% { text-shadow: 3px 0px 0 rgba(0,255,0,0.6); }
+    }
+
+    @keyframes pulsate {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    #gross {
+      font-size: 30px;
+      color: #fff;
+      background-color: #9b0000;
+      padding: 20px;
+      margin-top: 50px;
+      display: none;
+    }
+
+    .disgusting {
+      color: #ffff00;
+      background-color: #ff0000;
+      padding: 10px;
+      border-radius: 10px;
+      animation: shiss 0.5s infinite;
+    }
+
+    @keyframes shiss {
+      0% { opacity: 1; }
+      50% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to the Mii Portal</h1>
+  <div id="mii-avatar"></div>
+  <div id="message">Click on the Mii for a surprise...</div>
+
+  <div id="deform">**ERROR**: Mii corruption detected...</div>
+  <div id="gross">
+    <div class="disgusting">You shouldn’t have done this... You shouldn’t have clicked.</div>
+    <div class="disgusting">The Mii... is changing. It’s coming for you...</div>
+  </div>
+
+  <script>
+    document.getElementById('mii-avatar').onclick = function() {
+      document.getElementById('message').style.opacity = 0;
+      document.getElementById('mii-avatar').style.backgroundColor = "#9b0000"; // Blood Red
+      setTimeout(() => {
+        document.getElementById('deform').style.display = "block";
+      }, 1000);
+
+      setTimeout(() => {
+        document.getElementById('gross').style.display = "block";
+        document.getElementById('gross').innerHTML = "Something is wrong. Something is very wrong. The Mii isn’t a Mii anymore...";
+      }, 3000);
+
+      // Add some revolting glitchy effects
+      setInterval(() => {
+        document.body.style.backgroundColor = "#0f0f0f";
+      }, 500);
+      
+      // New disgusting "shiss" after 5 seconds
+      setTimeout(() => {
+        document.getElementById('gross').innerHTML += "<div class='disgusting'>The Mii has been replaced. It’s no longer human.</div>";
+      }, 5000);
+
+      // Add random awful glitchy visuals
+      setInterval(() => {
+        document.getElementById('mii-avatar').style.transform = "rotate(" + (Math.random() * 720) + "deg)";
+      }, 500);
+
+
+    };
+  </script>
+</body>
+</html>
